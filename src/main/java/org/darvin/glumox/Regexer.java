@@ -55,4 +55,9 @@ public class Regexer {
         return list;
 
     }
+    
+    @Override
+    public String toString() {
+        return ics.toString();
+    }
 }

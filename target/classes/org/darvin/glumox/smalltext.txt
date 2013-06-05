@@ -1,0 +1,9 @@
+smalltextthis is a file named test
+line1 - abc
+line2 - efg
+line3 - hij`
+line4 - efg
+line5 - 123`
+line6 - abcdef
+line7 - acbefh
+line8 - efgabd

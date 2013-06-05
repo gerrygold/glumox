@@ -9,13 +9,13 @@ package org.darvin.glumox;
  * @author ggoldman
  */
 import java.util.ArrayList;
+import java.util.List;
 import java.util.concurrent.Callable;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.Future;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.TimeoutException;
-
 
 public class RegThread {
 
@@ -29,17 +29,23 @@ public class RegThread {
             System.out.println(future.get(timeout, TimeUnit.MILLISECONDS));
             System.out.println("Thread Normal Finish!");
         } catch (TimeoutException e) {
-            System.out.println("Timeout: Terminated!");
+            System.out.println("Timeout: Terminated!: Thread is done=" + future.isDone());
+            List<Runnable> shutdownNow = executor.shutdownNow();
+            System.out.println("Thread shutdown=" + executor.isShutdown() + " : terminated=" + executor.isTerminated());
         }
 
         executor.shutdownNow();
     }
 }
+
 class Task implements Callable<String> {
+
     private final String filename;
-    public Task (String file) {
+
+    public Task(String file) {
         filename = file;
     }
+
     @Override
     public String call() throws Exception {
         StringBuilder sb = new StringBuilder();
